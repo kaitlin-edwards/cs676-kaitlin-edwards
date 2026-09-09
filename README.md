@@ -1,3 +1,3 @@
 # cs676-kaitlin-edwards.
-#Coursework for CS676, Fall 2026. 
-#Homework, week 1
+Coursework for CS676, Fall 2026. 
+Homework, week 1
