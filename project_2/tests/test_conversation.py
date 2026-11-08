@@ -121,6 +121,7 @@ def test_conversation_requires_two_personas(tmp_path):
 
     assert "at least two" in orch.handle("have them talk about the weather").reply
 
+
 def test_conversation_runs_with_two_personas(tmp_path):
     for name, role in [("Alice Adams", "doctor"), ("Bob Brown", "patient")]:
         save_persona(PersonaSpec(name=name, role=role, summary="", body="b"), tmp_path)
@@ -131,6 +132,7 @@ def test_conversation_runs_with_two_personas(tmp_path):
     assert result.conversation is not None
     assert len(result.conversation.turns) == 9  # 6 open turns + closing note + 2 last words
     assert len(list((tmp_path / "conversations").glob("*.md"))) == 1
+
 
 def test_named_participants_are_resolved(tmp_path):
     for name, role in [("Alice Adams", "doctor"), ("Bob Brown", "patient"), ("Carol Chen", "nurse")]:
@@ -162,6 +164,7 @@ def test_unmatched_input_falls_through_to_chat(tmp_path):
     assert result.reply == "Tell me who you want to build."
     assert result.conversation is None
 
+
 # -- choosing the next speaker -----------------------------------------------
 
 
@@ -182,7 +185,6 @@ def test_name_inside_another_word_does_not_count():
     runners = four_runners()
     line = "I've been dancing around this all morning."  # 'dan' in 'dancing', not 'Dana'
     assert choose_next_speaker(line, "Susan Canning", runners).name == "Dana Reilly"
-
 
 
 def test_conversation_follows_who_was_addressed():
@@ -230,6 +232,7 @@ def test_conversation_ends_when_one_person_is_left():
 
     assert [t.speaker for t in convo.turns] == ["Alice", "Scene"]
 
+
 def test_closing_gives_everyone_a_last_word():
     a, b, _ = two_agents()
     convo = run_conversation([a, b], topic="x", turns=2, closing="Corral closing!")
@@ -244,6 +247,7 @@ def test_no_closing_when_everyone_already_left():
 
     assert "Corral closing!" not in convo.transcript()
 
+
 def test_closing_lets_the_quietest_speak_first():
     """The 'after' run: Susan was left out, then got the very last word and nobody could answer her."""
     llm = ScriptedLLM(replies=["Katie, ready?", "Dana, yes.", "Last word."])
@@ -256,6 +260,7 @@ def test_closing_lets_the_quietest_speak_first():
     assert [t.speaker for t in convo.turns] == [
         "Dana Reilly", "Katie Smith", "Scene", "Susan Canning", "Dana Reilly", "Katie Smith"
     ]
+
 
 def test_transcripts_do_not_overwrite_each_other(tmp_path):
     a, b, _ = two_agents()

@@ -1,10 +1,16 @@
 """
 conversation.py — put two or more agents in a room and let them talk.
 
-The loop is deliberately dumb: agents take strict turns in the order given, for
-a fixed number of turns, and then it stops. No agent decides who speaks next and
-no agent can interrupt. Making that smarter is one of the more interesting
-things you can do with this project.
+Turn-taking follows the conversation rather than a fixed order:
+
+- Whoever the last line names (by first name) speaks next. If several are
+  named, the one named last wins, because a question usually comes at the end.
+- If nobody is named, whoever has been quiet longest gets the floor, so a shy
+  character is not starved out by two others talking to each other.
+- An agent can leave by ending a reply with [LEAVES]; the conversation stops
+  when fewer than two remain.
+- An optional closing announcement gives everyone still present one last line,
+  quietest first, so the scene ends instead of stopping mid-thought.
 """
 
 from __future__ import annotations
@@ -43,6 +49,7 @@ class Conversation:
         """Render as plain text, suitable for saving or printing."""
         header = f"# Conversation: {self.topic}\n\nParticipants: {', '.join(self.participants)}\n\n"
         return header + "\n\n".join(f"**{t.speaker}:** {t.text}" for t in self.turns)
+
 
 def _last_spoke(agents: List[PersonaAgent], history: Optional[List[Turn]]) -> dict:
     """For each agent, the position of their most recent line in history (-1 if they haven't spoken)."""
@@ -85,6 +92,7 @@ def choose_next_speaker(last_text: str, last_speaker: str, agents: List[PersonaA
     
     candidates = [a for a in agents if a.name != last_speaker]
     return min(candidates, key=lambda a: last_spoke[a.name])
+
 
 def run_conversation(
     agents: List[PersonaAgent],
