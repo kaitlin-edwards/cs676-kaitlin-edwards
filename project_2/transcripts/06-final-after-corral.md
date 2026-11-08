@@ -1,4 +1,6 @@
-# Conversation: waiting in the staten island start corral at the nyc marathon before it closes
+# 06 — Final: closing round goes quietest-first, setting named in the topic, claude-haiku-4-5
+
+## Conversation: waiting in the staten island start corral at the nyc marathon before it closes
 
 Participants: Dana Reilly, Erin Billstein, Katie Smith, Susan Canning
 
