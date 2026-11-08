@@ -33,5 +33,3 @@ The anti-chafe cream thing—pick one and stick with it. You've already trained 
 
 And Susan, seriously, you're gonna be fine! Like, Dana's totally right—they're not gonna like, pack up the water stations and leave you stranded in the desert or whatever. That would be insane! Plus you're already out here, you're already IN the corral, so like, you're definitely doing this. The hard part's over! Everything from here is just, you know, running. Which I'm also doing for the first time basically ever, so we're all just out here winging it together, right?
 
-
-## IN REALITY - People were making small talk, asking when corral closed, when race started. I asked people if they had sunscreen, they only had glitter. People were chatting about paces, as well as paces of the earlier corrals

@@ -77,6 +77,5 @@ stage › 6 turns between Analyst Who Is Wired and Unnamed.
   · wrote temp\conversation.md
 
 
-First sample test convo above, showing the unnamed error that needs to corrected
 
 

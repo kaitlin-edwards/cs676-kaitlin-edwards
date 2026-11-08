@@ -28,5 +28,3 @@ stage › 1 persona(s) in temp:
 
 you › 
 
-NEXT ERROR - showing that each runner was the same person - Each persona is written in a separate API call with the same instructions, and the model has no idea which names it already used. So every call landed on the same “realistic full name”: Marcus Chen.
-The code overwrote the file without warning. The filename comes from the name (marcus-chen.md), and save_persona overwrites whatever is already there.

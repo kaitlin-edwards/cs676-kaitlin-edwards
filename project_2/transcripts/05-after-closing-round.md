@@ -118,16 +118,3 @@ stage › 11 turns between Dana Reilly and Erin Billstein and Katie Smith and Su
   · wrote temp\conversation.md
 
 you › 
-## Improvements
-handoffs followed the convo, the person asked a question directly answered
-The setting held (no 5k)
-There's a clear ending
-Fewer stage directions
-
-## Failure analysis
-Susan still left out until end
-Susan's last question is left unanswered
-Nobody used LEAVES
-Glitter is accidental still 
-Numbers don't make sense - Katie targeting 4:25 but been 3:47 away fro breaking 3hr45mins for 3 yrs. Also contradicts herself "even if we’re in different corrals” right after they agreed they’re both in Corral B"
-

@@ -71,4 +71,3 @@ the last half mile if you have anything left.
 stage › 6 turns between Dana Reilly and Erin Billstein and Katie Smith and Susan Canning.                                        
   · wrote temp\conversation.md
 
-## problems: Susan never spoke, Erin turned the race into a 5k, will include more direct settings in next run (...about waiting in the Staten Island start corral at the NYC Marathon before it closes)
