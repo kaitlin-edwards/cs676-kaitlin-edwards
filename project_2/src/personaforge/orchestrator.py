@@ -112,8 +112,10 @@ class Orchestrator:
         if on_start is not None:
             on_start(topic)
         conversation = run_conversation(agents, topic=topic, turns=turns, on_turn=on_turn, closing = DEFAULT_CLOSING)
-        path = save_transcript(conversation, self.persona_dir, filename="conversation.md")
-
+        # Transcripts get their own folder: list_personas reads every .md in
+        # persona_dir, and a transcript there would load as a fake "Unnamed" persona.
+        path = save_transcript(conversation, self.persona_dir / "conversations")
+        
         return Result(
             reply=f"{len(conversation.turns)} turns between {' and '.join(s.name for s in specs)}.",
             events=[f"wrote {path}"],

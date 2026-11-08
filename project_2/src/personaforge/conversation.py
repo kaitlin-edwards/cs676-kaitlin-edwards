@@ -150,13 +150,27 @@ def run_conversation(
 
 
 def save_transcript(conversation: Conversation, directory, filename: Optional[str] = None):
-    """Write the transcript to disk next to the personas that produced it."""
+    """
+    Write the transcript to disk and return its path.
+
+    Without a filename, the name comes from the topic ("conversation-the-corral.md"),
+    numbered if that file already exists, so a new conversation never overwrites
+    an old one.
+    """
     from pathlib import Path
 
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
-    name = filename or "conversation.md"
-    path = directory / name
+
+    if filename is None:
+        slug = re.sub(r"[^a-z0-9]+", "-", conversation.topic.lower()).strip("-")[:40].strip("-") or "untitled"
+        filename = f"conversation-{slug}.md"
+        number = 2
+        while (directory / filename).exists():
+            filename = f"conversation-{slug}-{number}.md"
+            number += 1
+
+    path = directory / filename
     path.write_text(conversation.transcript(), encoding="utf-8")
     return path
 

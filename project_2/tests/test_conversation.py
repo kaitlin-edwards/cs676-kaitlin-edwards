@@ -10,6 +10,7 @@ from personaforge import (
     Orchestrator,
     PersonaSpec,
     agent_from_spec,
+    list_personas,
     run_conversation,
     save_persona,
     save_transcript,
@@ -120,7 +121,6 @@ def test_conversation_requires_two_personas(tmp_path):
 
     assert "at least two" in orch.handle("have them talk about the weather").reply
 
-
 def test_conversation_runs_with_two_personas(tmp_path):
     for name, role in [("Alice Adams", "doctor"), ("Bob Brown", "patient")]:
         save_persona(PersonaSpec(name=name, role=role, summary="", body="b"), tmp_path)
@@ -130,8 +130,7 @@ def test_conversation_runs_with_two_personas(tmp_path):
 
     assert result.conversation is not None
     assert len(result.conversation.turns) == 9  # 6 open turns + closing note + 2 last words
-    assert (tmp_path / "conversation.md").exists()
-
+    assert len(list((tmp_path / "conversations").glob("*.md"))) == 1
 
 def test_named_participants_are_resolved(tmp_path):
     for name, role in [("Alice Adams", "doctor"), ("Bob Brown", "patient"), ("Carol Chen", "nurse")]:
@@ -257,3 +256,24 @@ def test_closing_lets_the_quietest_speak_first():
     assert [t.speaker for t in convo.turns] == [
         "Dana Reilly", "Katie Smith", "Scene", "Susan Canning", "Dana Reilly", "Katie Smith"
     ]
+
+def test_transcripts_do_not_overwrite_each_other(tmp_path):
+    a, b, _ = two_agents()
+    first = save_transcript(run_conversation([a, b], topic="the corral", turns=2), tmp_path)
+    second = save_transcript(run_conversation([a, b], topic="the corral", turns=2), tmp_path)
+
+    assert first.name == "conversation-the-corral.md"
+    assert second.name == "conversation-the-corral-2.md"
+
+
+def test_transcripts_are_not_loaded_as_personas(tmp_path):
+    """Regression: the offline run where 'Unnamed' (an old transcript) joined the conversation."""
+    for name, role in [("Alice Adams", "doctor"), ("Bob Brown", "patient")]:
+        save_persona(PersonaSpec(name=name, role=role, summary="", body="b"), tmp_path)
+    orch = Orchestrator(llm=ScriptedLLM(replies=["a line"]), persona_dir=tmp_path)
+
+    orch.handle("have them talk about the test results")
+    second = orch.handle("have them talk about the weather")
+
+    assert [s.name for s in list_personas(tmp_path)] == ["Alice Adams", "Bob Brown"]
+    assert second.conversation.participants == ["Alice Adams", "Bob Brown"]
