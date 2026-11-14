@@ -1,6 +1,5 @@
 # 04 — Midway run (name-based handoff, no closing round yet), claude-haiku-4-5
 
-## MIDWAY VERSION:
 you › start a conversation between Dana Reilly and Erin Billstein and Katie Smith and Susan Canning about waiting in the corral before it closes
 
 ── conversation: waiting in the corral before it closes ──

@@ -1,4 +1,4 @@
-# # 01 — Offline run, original code: an old transcript joins the conversation as "Unnamed" (offline stub, no model)
+# 01 — Offline run, original code: an old transcript joins the conversation as "Unnamed" (offline stub, no model)
 
 ## ─ conversation: the test results ──
 

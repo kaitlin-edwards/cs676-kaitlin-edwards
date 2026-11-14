@@ -1,8 +1,7 @@
 # 05 — After: handoff + quietest fallback + leaving + closing round (list order), claude-haiku-4-5
 
-## AFTER
+you ›    start a conversation between Dana Reilly and Erin Billstein and Katie Smith and Susan Canning about waiting in the Staten Island start corral at the NYC Marathon before it closes
 
-he Staten Island start corral at the NYC Marathon before it closes
 
 ── conversation: waiting in the staten island start corral at the nyc marathon before it closes ──
 
