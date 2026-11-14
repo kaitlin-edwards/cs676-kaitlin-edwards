@@ -20,3 +20,5 @@ temp/*
 # OS
 .DS_Store
 Thumbs.db
+
+notes.md
